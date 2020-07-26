@@ -1,4 +1,6 @@
+import 'package:cassi_vacation_management/src/ui/widgets/days_header_widget.dart';
 import 'package:flutter/material.dart';
+import './src/core/time_line/month_builder.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,13 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  String _result = 'No data';
 
   @override
   Widget build(BuildContext context) {
@@ -42,24 +38,25 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ...MonthBuilder.buildMonth(7, 2020)
+                  .map((day) => DaysHeadierWidget(day))
+                  .toList()
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          print(MonthBuilder.buildMonth(7, 2020));
+        },
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.account_circle),
       ),
     );
   }
