@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../core/time_line/day.dart';
-import '../../core/consts/day_colors.dart';
+import '../styles/styles.dart';
 
-class DaysHeadierWidget extends StatelessWidget {
+class DaysHeaderItem extends StatelessWidget {
   final Day day;
 
-  DaysHeadierWidget(this.day);
+  DaysHeaderItem(this.day);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,14 @@ class DaysHeadierWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${day.weekDay[0]}${day.weekDay[1]}${day.weekDay[2]}'),
-            Text(day.id.toString()),
+            Text(
+              '${day.weekDay[0]}${day.weekDay[1]}${day.weekDay[2]}',
+              style: AppStyles.daysHeaderWeekDayStyle,
+            ),
+            Text(
+              day.id.toString(),
+              style: AppStyles.daysHeaderDayStyle,
+            ),
           ],
         ),
       ),
