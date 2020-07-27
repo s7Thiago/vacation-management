@@ -15,5 +15,6 @@ class AppStyles {
 
   static final TextStyle monthHeaderSelectorTitle = daysHeaderDayStyle.copyWith(
     fontSize: 20,
+    fontWeight: FontWeight.w900,
   );
 }

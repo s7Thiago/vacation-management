@@ -5,6 +5,7 @@ import './days_header_item.dart';
 import '../../core/time_line/year.dart';
 import '../../core/time_line/month.dart';
 import '../../core/providers/years.dart';
+import '../../core/providers/page_provider.dart';
 
 class DaysHeader extends StatelessWidget {
   const DaysHeader({
@@ -15,9 +16,11 @@ class DaysHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       scrollDirection: Axis.horizontal,
+      physics: BouncingScrollPhysics(),
       children: [
         ...List.from(Provider.of<YearsProvider>(context)
-            .years[2020][0]
+            .years[2020][Provider.of<AppPageIndexProvider>(context)
+                .getIndex('monthsHeaderPageSelector')]
             .days
             .map((e) => DaysHeaderItem(e))),
       ],
